@@ -10,7 +10,7 @@ class Felhasznalo extends Model
     use HasFactory;
     protected $fillable=[
         'id',
-        'felhnev',
+        'fnev',
         'jelszo',
         'email',
         'vnev',

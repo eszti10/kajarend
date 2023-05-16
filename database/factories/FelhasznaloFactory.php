@@ -25,7 +25,7 @@ class FelhasznaloFactory extends Factory
 
         return [
 
-            "felhnev" =>  $this->faker->userName(),
+            "fnev" =>  $this->faker->userName(),
             "jelszo" => $hash,
             "email" => $this->faker->email(),
             "vnev" => $this->faker->lastName(),
