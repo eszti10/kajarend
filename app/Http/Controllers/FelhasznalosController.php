@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\Felhasznalos;
+use App\Models\Felhasznalo;
 use Illuminate\Support\Facades\Crypt;
 
 class FelhasznalosController extends Controller
@@ -27,7 +27,7 @@ class FelhasznalosController extends Controller
 
 
 
-               $user=Felhasznalos::where([
+               $user=Felhasznalo::where([
                 'felhnev' =>$felhnev,
                 'jelszo'=>$hash,
                ])->first();

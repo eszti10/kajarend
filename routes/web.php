@@ -53,4 +53,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get("/logout", [App\Http\Controllers\LogoutController::class, "logout"]);
 
 
+
+
 });
+
+Route::post('/bejelentkezesellenorzes', [\App\Http\Controllers\FelhasznalosController::class, 'authenticate']);
