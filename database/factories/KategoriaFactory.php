@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Jogosultsags>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Kategoria>
  */
-class JogosultsagsFactory extends Factory
+class KategoriaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class JogosultsagsFactory extends Factory
     public function definition(): array
     {
         return [
-            "nev" =>  $this->faker->name(),
+            "nev" =>  $this->faker->foodname(),
 
         ];
     }

@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Felhasznalos>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class FelhasznalosFactory extends Factory
+class FelhasznaloFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -31,7 +31,7 @@ class FelhasznalosFactory extends Factory
             "vnev" => $this->faker->lastName(),
             "knev" => $this->faker->firstName(),
             "cim" => $this->faker->streetAddress(),
-            "jogosultsagID" => $this->faker->numberBetween($min = 1, $max = 3),
+            "jogosultsagID" => $this->faker->numberBetween($min = 1, $max = 3)
         ];
     }
 }

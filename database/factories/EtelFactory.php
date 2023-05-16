@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Fizetesmods>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Etel>
  */
-class FizetesmodsFactory extends Factory
+class EtelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class FizetesmodsFactory extends Factory
     public function definition(): array
     {
         return [
-            "fizetestipus" =>  $this->faker->name(),
+            "darab" =>  $this->faker->numberBetween(1, 10),
+            "tetelar" => $this->faker->numberBetween(1000, 4000),
         ];
     }
 }
