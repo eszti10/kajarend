@@ -12,7 +12,7 @@ class FelhasznalosController extends Controller
 {
     public function authenticate(Request $request)
     {
-        $felhnev = $request->post("username");
+        $fnev = $request->post("username");
         $jelszo = $request->post("password");
 
 
@@ -28,7 +28,7 @@ class FelhasznalosController extends Controller
 
 
                $user=Felhasznalo::where([
-                'felhnev' =>$felhnev,
+                'fnev' =>$fnev,
                 'jelszo'=>$hash,
                ])->first();
               //dd($hash,$jelszo);

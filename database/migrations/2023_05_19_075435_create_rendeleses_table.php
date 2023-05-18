@@ -20,10 +20,10 @@ return new class extends Migration
             $table->unsignedBigInteger('fizetesmodID');
             $table->unsignedBigInteger('futarID');
             $table->timestamps();
-            $table->foreign('felhasznaloID')->references('id')->on('felhasznalos');
+            $table->foreign('felhasznaloID')->references('id')->on('users');
             $table->foreign('statuszID')->references('id')->on('statuszs');
             $table->foreign('fizetesmodID')->references('id')->on('fizetesmods');
-            $table->foreign('futarID')->references('id')->on('felhasznalos');
+            $table->foreign('futarID')->references('id')->on('users');
         });
     }
 

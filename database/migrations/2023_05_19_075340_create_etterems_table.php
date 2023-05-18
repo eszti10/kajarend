@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('felhasznalos', function (Blueprint $table) {
+        Schema::create('etterems', function (Blueprint $table) {
             $table->id();
-            $table->string('fnev');
-            $table->string('jelszo');
-            $table->string('email');
-            $table->string('vnev');
-            $table->string('knev');
+            $table->string('nev');
             $table->string('cim');
-            $table->unsignedBigInteger('jogosultsagID');
+            $table->string('telszam');
+            $table->unsignedBigInteger('tulajID');
             $table->timestamps();
-            $table->foreign('jogosultsagID')->references('id')->on('jogosultsags');
+            $table->foreign('tulajID')->references('id')->on('users');
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('felhasznalos');
+        Schema::dropIfExists('etterems');
     }
 };

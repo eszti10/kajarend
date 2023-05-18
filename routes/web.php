@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,45 +15,29 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return view('welcome');
 });
 
-Route::get('/login', function (Request $request) {
-    if(Auth::check())
-    {
-        return redirect('valaszto');
-    }
+Route::get('/dashboard', function () {
+    return view('user-dashboard');
+})->middleware(['auth', 'verified','user'])->name('dashboard');
 
-    if(Session::get('hibakod') == 1 || Session::get('hibakod') == 2)
-    {
-        return view('bejelentkezes', ['hibakod' => 1]);
-    }
-    elseif (Session::get('hibakod') == 3) {
+Route::get('/tulaj-dashboard', function () {
+    return view('tulaj-dashboard');
+})->middleware(['auth', 'verified','tulaj'])->name('tulaj-dashboard');
 
-        return view('bejelentkezes', ['hibakod' => 2]);
-    }
-    else {
-        return view('bejelentkezes', ['hibakod' => 0]);
-    }
-})->name('login');
+Route::get('/admin-dashboard', function () {
+    return view('admin-dashboard');
+})->middleware(['auth', 'verified','admin'])->name('admin-dashboard');
 
-Route::group(['middleware' => 'auth'], function() {
-    Route::get("/valaszto", [App\Http\Controllers\RedirectController::class, "valaszto"]);
-    Route::get('/vasarlofelulet' ,function () {
-        return view('vasarlofelulet');
-    });
-    Route::get('/ettermifelulet' ,function () {
-        return view('ettermifelulet');
-    });
-    Route::get('/futarfelulet' ,function () {
-        return view('futarfelulet');
-    });
+Route::get('/futar-dashboard', function () {
+    return view('futar-dashboard');
+})->middleware(['auth', 'verified','futar'])->name('futar-dashboard');
 
-    Route::get("/logout", [App\Http\Controllers\LogoutController::class, "logout"]);
-
-
-
-
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/bejelentkezesellenorzes', [\App\Http\Controllers\FelhasznalosController::class, 'authenticate']);
+require __DIR__.'/auth.php';

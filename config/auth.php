@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'felhasznalo',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,9 @@ return [
     */
 
     'guards' => [
-        'felhasznalo' => [
+        'web' => [
             'driver' => 'session',
-            'provider' => 'felhasznalos',
+            'provider' => 'web',
         ],
     ],
 
@@ -60,9 +60,9 @@ return [
     */
 
     'providers' => [
-        'felhasznalos' => [
+        'web' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Felhasznalos::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

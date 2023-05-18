@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('vnev');
+            $table->string('knev');
+            $table->string('cim');
+            $table->unsignedBigInteger('jogosultsagID')->default(1);
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('jogosultsagID')->references('id')->on('jogosultsags');
         });
     }
 
