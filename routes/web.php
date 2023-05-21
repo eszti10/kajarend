@@ -38,9 +38,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get("/futarfelulet", [App\Http\Controllers\FutarController::class, "index"]);
+
 });
 
 Route::get("/tulaj-dashboard", [App\Http\Controllers\EtteremsController::class, "postcreate"]);
 Route::post('/tulaj-dashboard', [App\Http\Controllers\EtteremsController::class, "store"]);
+
 
 require __DIR__.'/auth.php';
