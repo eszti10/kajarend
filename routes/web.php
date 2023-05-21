@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RendelesController;
+use App\Http\Controllers\RendelestetelController;
+use App\Http\Controllers\EtelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +41,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/rendeleslista', [RendelesController::class,'index']);
+    Route::delete('/etels/{etel}',[EtelController::class, 'destroy']);
+    Route::get('/etels', [EtelController::class,'index']);
+    Route::get('/etels/{etel}/edit',[EtelController::class, 'edit']);
+    Route::put('/etels/{etel}',[EtelController::class, 'update']);
+    Route::get('/etels/create',[EtelController::class, 'create']);
+    Route::post('/etels',[EtelController::class, 'store']);
+    Route::get('/rendelestetellista/{rendelestetel}', [RendelestetelController::class,'index']);
 });
 
 require __DIR__.'/auth.php';

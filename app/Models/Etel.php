@@ -17,4 +17,12 @@ class Etel extends Model
     {
         return $this->hasMany(Rendelestetels::class);
     }
+
+    protected $fillable=[
+        'nev',
+        'ar',
+        'etteremID',
+        'kategoriaID'
+    ];
+
 }
