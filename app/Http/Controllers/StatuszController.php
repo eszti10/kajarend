@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-class JogosultsagsController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Statusz;
+
+
+class StatuszController extends Controller
 {
-    //
+
 }
