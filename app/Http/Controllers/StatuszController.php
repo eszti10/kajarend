@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EtelsController extends Controller
+class StatuszController extends Controller
 {
     //
 }

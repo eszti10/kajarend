@@ -40,4 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get("/tulaj-dashboard", [App\Http\Controllers\EtteremsController::class, "postcreate"]);
+Route::post('/tulaj-dashboard', [App\Http\Controllers\EtteremsController::class, "store"]);
+
 require __DIR__.'/auth.php';

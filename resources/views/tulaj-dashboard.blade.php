@@ -1,17 +1,31 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Tulaj Dashboard') }}
-        </h2>
-    </x-slot>
+<form action="/tulaj-dashboard" method="POST">
+    @csrf
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tulaj kaja felvitel</title>
+        <link rel="stylesheet" href="{{asset('css/stilus.css')}}">
+    </head>
+    @csrf
+
+     <div class="form-group">
+    <label for="name">Neve:</label>
+    <input type="string" class="form-control" name="nev" id="nev"  placeholder="Étel neve:">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Ár:</label>
+    <input type="int" class="form-control" name="ar" id="ar"  placeholder="Ar:">
+  </div>
+
+  <div class="form-group">
+    <label for="headquarters">Kategoria:</label>
+    <input type="int" class="form-control" name="kategoriaid" id="kategoriaid"  placeholder="Tárgy azonosítója:">
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Étel hozzáadása</button>
+</form>
