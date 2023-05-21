@@ -51,8 +51,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/rendelestetellista/{rendelestetel}', [RendelestetelController::class,'index']);
 });
 
-Route::get("/tulaj-dashboard", [App\Http\Controllers\EtteremsController::class, "postcreate"]);
-Route::post('/tulaj-dashboard', [App\Http\Controllers\EtteremsController::class, "store"]);
-
 
 require __DIR__.'/auth.php';
