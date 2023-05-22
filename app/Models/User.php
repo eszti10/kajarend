@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Http\Controllers\RendelesController;
+use App\Models\Rendeles;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
+    public $rendid=0;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

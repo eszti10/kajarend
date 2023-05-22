@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rendeles extends Model
 {
+    public $table = "rendeleses";
     use HasFactory;
     public function rendelestetels()
     {
@@ -17,4 +18,13 @@ class Rendeles extends Model
     {
         return $this->belongsTo(Felhasznalos::class);
     }
+
+    protected $fillable=[
+        'megjegyzés',
+        'datum',
+        'felhasznaloID',
+        'statuszID',
+        'fizetesmodID',
+        'futarID'
+    ];
 }

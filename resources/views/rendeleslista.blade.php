@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <table border=5 style="">
                         <tr>
+                            <th>Megtekint</th>
                             <th>Dátum</th>
                             <th>Rendelő</th>
                             <th>Státusz</th>

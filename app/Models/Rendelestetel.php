@@ -17,4 +17,10 @@ class Rendelestetel extends Model
     {
         return $this->belongsToMany(Etels::class);
     }
+
+    protected $fillable=[
+        'rendelesID',
+        'etelID',
+        'darab'
+    ];
 }
