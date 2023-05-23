@@ -2,6 +2,13 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Rendelések') }}
+
+
+            @if ($rendelestetels==null)
+                0
+            @else
+                Összeg: {{ $rendelestetels[0]->total }}
+            @endif
         </h2>
     </x-slot>
 
@@ -27,7 +34,10 @@
                                         <form action="/rendelestetellista/{{ $rendelestetels[$i]->id }}" method="post">
                                             @csrf
                                             @method('delete')
+                                            @if ($rendelestetels[$i]->enev!="")
                                             <input type="submit" value="Törlés">
+                                            @endif
+
                                         </form>
                                     </td>
                                 </tr>
@@ -36,7 +46,7 @@
                         <div>
                             <form action="/rendeleses" method="post">
                                 @csrf
-                                <label for="fizetesmodID">Étterem neve:</label>
+                                <label for="fizetesmodID">Fizetésmód:</label>
                                 <select name="fizetesmodID" id="fizetesmodID" style="color:black">
                                     <option value=1>Készpénz</option>
                                     <option value=2>Kártya</option>

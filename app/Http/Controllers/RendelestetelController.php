@@ -38,7 +38,7 @@ class RendelestetelController extends Controller
         ->get();
         }else{
             $rendelestetels=DB::table('rendelestetels')
-        ->select('rendelestetels.id as id','rendelesID', 'etels.nev as enev', 'darab', 'etterems.nev as etnev')
+        ->select('rendelestetels.id as id','rendelesID', 'etels.nev as enev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'), 'darab', 'etterems.nev as etnev')
         ->join('etels','rendelestetels.etelID','=','etels.id')
         ->join('rendeleses','rendelestetels.rendelesID','=','rendeleses.id')
         ->join('etterems','etels.etteremID','=','etterems.id')

@@ -16,21 +16,23 @@
                             <th>Rendelő</th>
                             <th>Státusz</th>
                             <th>Fizetésmód</th>
+                            <th>Összeg</th>
                             <th>Futár</th>
                             <th>Megjegyzés</th>
                         </tr>
                         @for ($i = 0; $i < count($rendeleses); $i++)
-
-                            <tr>
-                                <td><a href="/rendelestetellista/{{ $rendeleses[$i]->rid }}">Megtekint</a></td>
-                                <td>{{ $rendeleses[$i]->datum }}</td>
-                                <td>{{ $rendeleses[$i]->name }}</td>
-                                <td>{{ $rendeleses[$i]->statusznev }}</td>
-                                <td>{{ $rendeleses[$i]->total }}</td>
-                                <td>{{ $futars[$i]->name }}</td>
-                                <td>{{ $rendeleses[$i]->megjegyzés }}</td>
-                            </tr>
-
+                            @if ($futars[$i]->name != 'admin')
+                                <tr>
+                                    <td><a href="/rendelestetellista/{{ $rendeleses[$i]->rid }}">Megtekint</a></td>
+                                    <td>{{ $rendeleses[$i]->datum }}</td>
+                                    <td>{{ $rendeleses[$i]->name }}</td>
+                                    <td>{{ $rendeleses[$i]->statusznev }}</td>
+                                    <td>{{ $rendeleses[$i]->ftip }}</td>
+                                    <td>{{ $rendeleses[$i]->total }}</td>
+                                    <td>{{ $futars[$i]->name }}</td>
+                                    <td>{{ $rendeleses[$i]->megjegyzés }}</td>
+                                </tr>
+                            @endif
                         @endfor
                     </table>
                 </div>

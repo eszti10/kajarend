@@ -19,11 +19,12 @@ class RendelesController extends Controller
 
         if ($jelenjog[0]->jognev=="admin"){
             $rendeleses =DB::table('rendeleses')
-        ->select('rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
+        ->select('fizetesmods.fizetestipus as ftip','rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
         ->join('users','rendeleses.felhasznaloID','=','users.ID')
         ->join('statuszs','rendeleses.statuszID','=','statuszs.id')
         ->join('rendelestetels','rendeleses.id','=','rendelestetels.rendelesID')
         ->join('etels','rendelestetels.etelID','=','etels.id')
+        ->join('fizetesmods','fizetesmods.id','=','rendeleses.fizetesmodID')
         ->groupBy('rendeleses.id')
         ->get();
 
@@ -33,12 +34,13 @@ class RendelesController extends Controller
         ->get();
         }else if($jelenjog[0]->jognev=="tulaj"){
             $rendeleses =DB::table('rendeleses')
-        ->select('rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
+        ->select('fizetesmods.fizetestipus as ftip','rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
         ->join('users','rendeleses.felhasznaloID','=','users.ID')
         ->join('statuszs','rendeleses.statuszID','=','statuszs.id')
         ->join('rendelestetels','rendeleses.id','=','rendelestetels.rendelesID')
         ->join('etels','rendelestetels.etelID','=','etels.id')
         ->join('etterems','etels.etteremID','=','etterems.id')
+        ->join('fizetesmods','fizetesmods.id','=','rendeleses.fizetesmodID')
         ->where('etterems.tulajID','=',auth()->id())
         ->groupBy('rendeleses.id')
         ->get();
@@ -49,12 +51,13 @@ class RendelesController extends Controller
         ->get();
         }else{
             $rendeleses =DB::table('rendeleses')
-        ->select('rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
+        ->select('fizetesmods.fizetestipus as ftip','rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
         ->join('users','rendeleses.felhasznaloID','=','users.ID')
         ->join('statuszs','rendeleses.statuszID','=','statuszs.id')
         ->join('rendelestetels','rendeleses.id','=','rendelestetels.rendelesID')
         ->join('etels','rendelestetels.etelID','=','etels.id')
         ->join('etterems','etels.etteremID','=','etterems.id')
+        ->join('fizetesmods','fizetesmods.id','=','rendeleses.fizetesmodID')
         ->where('rendeleses.felhasznaloID','=',auth()->id())
         ->groupBy('rendeleses.id')
         ->get();
