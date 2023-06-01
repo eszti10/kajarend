@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RendelesController;
 use App\Http\Controllers\RendelestetelController;
 use App\Http\Controllers\EtelController;
+use App\Http\Controllers\KosarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/rendelestetellista/{rendelestetel}',[RendelestetelController::class, 'destroy']);
     Route::get('/rendelestetellista/{rendelestetel}', [RendelestetelController::class,'index']);
     Route::post('/rendelestetellista',[RendelestetelController::class, 'store']);
+
+    Route::get('/kosar', [KosarController::class,'index']);
 });
 
 

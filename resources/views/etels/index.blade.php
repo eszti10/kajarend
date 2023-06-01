@@ -5,7 +5,7 @@
         </h2>
         @if ($jelenjog[0]->jognev == 'user')
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                <a href="/rendelestetellista/4" class="button">Kosár</a>
+                <a href="/kosar" class="button">Kosár</a>
             </h2>
         @endif
     </x-slot>

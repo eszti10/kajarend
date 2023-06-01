@@ -25,7 +25,6 @@
                                 <th>Étterem neve</th>
                                 <th>Törlés</th>
                             </tr>
-
                             @for ($i = 0; $i < count($rendelestetels); $i++)
                                 <tr>
                                     <td>{{ $rendelestetels[$i]->enev }}</td>

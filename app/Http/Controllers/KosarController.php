@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
-class RendelestetelController extends Controller
+class KosarController extends Controller
 {
     public function index(Rendelestetel $rendelestetel)
     {
@@ -45,42 +45,19 @@ class RendelestetelController extends Controller
         ->join('rendeleses','rendelestetels.rendelesID','=','rendeleses.id')
         ->join('users','rendeleses.felhasznaloID','=','users.id')
         ->join('etterems','etels.etteremID','=','etterems.id')
-        ->where('rendelesID','=',$rendelestetel->id)
+        ->where('rendelesID','=',4)
         ->get();
 
             $total=DB::table('rendeleses')
         ->select('rendelesID', DB::raw('SUM(rendelestetels.darab * etels.ar) as tot'))
         ->join('rendelestetels','rendeleses.id','=','rendelestetels.rendelesID')
         ->join('etels','rendelestetels.etelID','=','etels.id')
-        ->where('rendelesID','=',$rendelestetel->id)
+        ->where('rendelesID','=',4)
         ->groupBy('rendeleses.id')
         ->get();
 
         }
 
-        return view('rendelestetellista',compact('rendelestetels','rendelestetel','jelenjog','total'));
+        return view('kosar',compact('rendelestetels','rendelestetel','jelenjog','total'));
     }
-
-    public function store()
-    {
-        $enev=request('enev');
-
-        $eid=DB::table('etels')
-        ->select('etels.id')
-        ->where('etels.nev','=',$enev)
-        ->get();
-
-        Rendelestetel::create([
-            'rendelesID'=>4,
-            'etelID'=>$eid[0]->id,
-            'darab'=>request('db')
-        ]);
-        return redirect('/etels');
-    }
-
-    public function destroy(Rendelestetel $rendelestetel)
-        {
-            $rendelestetel->delete();
-            return redirect('/rendelestetellista/4');
-        }
 }

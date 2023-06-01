@@ -29,8 +29,10 @@ class RendelesController extends Controller
         ->get();
 
         $futars=DB::table('rendeleses')
-        ->select('users.name')
-        ->join('users','rendeleses.futarID','=','users.id')
+        ->select('rendeleses.id', 'users.name')
+        ->join('users','users.ID','=','rendeleses.futarID')
+        ->where('users.name','!=','admin')
+        ->orderBy('rendeleses.id','asc')
         ->get();
         }else if($jelenjog[0]->jognev=="tulaj"){
             $rendeleses =DB::table('rendeleses')
@@ -46,8 +48,10 @@ class RendelesController extends Controller
         ->get();
 
         $futars=DB::table('rendeleses')
-        ->select('users.name')
-        ->join('users','rendeleses.futarID','=','users.id')
+        ->select('rendeleses.id', 'users.name')
+        ->join('users','users.ID','=','rendeleses.futarID')
+        ->where('users.name','!=','admin')
+        ->orderBy('rendeleses.id','asc')
         ->get();
         }else{
             $rendeleses =DB::table('rendeleses')
@@ -63,8 +67,10 @@ class RendelesController extends Controller
         ->get();
 
         $futars=DB::table('rendeleses')
-        ->select('users.name')
-        ->join('users','rendeleses.futarID','=','users.id')
+        ->select('rendeleses.id', 'users.name')
+        ->join('users','users.ID','=','rendeleses.futarID')
+        ->where('users.name','!=','admin')
+        ->orderBy('rendeleses.id','asc')
         ->get();
         }
 

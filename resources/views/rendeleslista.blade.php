@@ -21,7 +21,7 @@
                             <th>Megjegyzés</th>
                         </tr>
                         @for ($i = 0; $i < count($rendeleses); $i++)
-                            @if ($futars[$i]->name != 'admin')
+
                                 <tr>
                                     <td><a href="/rendelestetellista/{{ $rendeleses[$i]->rid }}">Megtekint</a></td>
                                     <td>{{ $rendeleses[$i]->datum }}</td>
@@ -32,7 +32,7 @@
                                     <td>{{ $futars[$i]->name }}</td>
                                     <td>{{ $rendeleses[$i]->megjegyzés }}</td>
                                 </tr>
-                            @endif
+
                         @endfor
                     </table>
                 </div>
