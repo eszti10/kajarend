@@ -53,7 +53,7 @@ class RendelesController extends Controller
         ->where('users.name','!=','admin')
         ->orderBy('rendeleses.id','asc')
         ->get();
-        }else{
+        }else if($jelenjog[0]->jognev=="user"){
             $rendeleses =DB::table('rendeleses')
         ->select('fizetesmods.fizetestipus as ftip','rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
         ->join('users','rendeleses.felhasznaloID','=','users.ID')
@@ -72,9 +72,28 @@ class RendelesController extends Controller
         ->where('users.name','!=','admin')
         ->orderBy('rendeleses.id','asc')
         ->get();
+        }else{
+            $rendeleses =DB::table('rendeleses')
+        ->select('fizetesmods.fizetestipus as ftip','rendeleses.id as rid','datum', 'users.name', 'statuszs.statusznev', DB::raw('SUM(rendelestetels.darab * etels.ar) as total'),'megjegyzés')
+        ->join('users','rendeleses.felhasznaloID','=','users.ID')
+        ->join('statuszs','rendeleses.statuszID','=','statuszs.id')
+        ->join('rendelestetels','rendeleses.id','=','rendelestetels.rendelesID')
+        ->join('etels','rendelestetels.etelID','=','etels.id')
+        ->join('etterems','etels.etteremID','=','etterems.id')
+        ->join('fizetesmods','fizetesmods.id','=','rendeleses.fizetesmodID')
+        ->where('rendeleses.futarID','=',auth()->id())
+        ->groupBy('rendeleses.id')
+        ->get();
+
+        $futars=DB::table('rendeleses')
+        ->select('rendeleses.id', 'users.name')
+        ->join('users','users.ID','=','rendeleses.futarID')
+        ->where('users.name','!=','admin')
+        ->orderBy('rendeleses.id','asc')
+        ->get();
         }
 
-        return view('rendeleslista',compact('rendeleses'),compact('futars'));
+        return view('rendeleslista',compact('rendeleses','futars','jelenjog'));
     }
 
     public function store()

@@ -75,7 +75,7 @@
                             @endfor
                         </table>
                     @endif
-
+                    <a href="/rendeleslista" class="button">Vissza</a>
                 </div>
             </div>
         </div>
