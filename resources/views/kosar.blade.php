@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url('/css/kajarend.css') }}" />
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -5,7 +6,7 @@
 
             @if ($jelenjog[0]->jognev == 'user')
                 @if (count($total)==0)
-                    0
+                    0 Ft
                 @else
                     Összeg: {{ $total[0]->tot }}
                 @endif
@@ -31,11 +32,11 @@
                                     <td>{{ $rendelestetels[$i]->darab }}</td>
                                     <td>{{ $rendelestetels[$i]->etnev }}</td>
                                     <td>
-                                        <form action="/rendelestetellista/{{ $rendelestetels[$i]->rendelesID }}" method="post">
+                                        <form action="/rendelestetellista/{{ $rendelestetels[$i]->id }}" method="post">
                                             @csrf
                                             @method('delete')
                                             @if ($rendelestetels[$i]->enev != '')
-                                                <input type="submit" value="Törlés">
+                                            <button type="submit" value="Törlés">Törlés</button>
                                             @endif
 
                                         </form>
@@ -47,11 +48,14 @@
                             <form action="/rendeleses" method="post">
                                 @csrf
                                 <label for="fizetesmodID">Fizetésmód:</label>
+                                <div>
                                 <select name="fizetesmodID" id="fizetesmodID" style="color:black">
                                     <option value=1>Készpénz</option>
                                     <option value=2>Kártya</option>
-
+                                </div>
+                                <div>
                                     <input type="submit" value="Rendelés leadása">
+                                </div>
                             </form>
                         </div>
                     @else

@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url('/css/kajarend.css') }}" />
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -20,7 +21,7 @@
                             </tr>
                             <tr>
                                 <td><input type="hidden" name="enev" value="{{ $etels[0]->enev }}">{{ $etels[0]->enev }}</td>
-                                <td name="ar" id="ar">{{ $etels[0]->ar }}</td>
+                                <td name="ar" id="ar">{{ $etels[0]->ar }} Ft</td>
                                 <td name="kanev" id="kanev">{{ $etels[0]->kanev }}</td>
                                 <td name="etnev" id="etnev">{{ $etels[0]->etnev }}</td>
 

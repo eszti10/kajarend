@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ url('/css/kajarend.css') }}" />
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -7,7 +8,7 @@
                 @if (count($total)==0)
                     0
                 @else
-                    Összeg: {{ $total[0]->tot }}
+                    Összeg: {{ $total[0]->tot }} Ft
                 @endif
             @endif
         </h2>
@@ -23,7 +24,6 @@
                                 <th>Étel neve</th>
                                 <th>Darab szám</th>
                                 <th>Étterem neve</th>
-                                <th>Törlés</th>
                             </tr>
 
                             @for ($i = 0; $i < count($rendelestetels); $i++)
@@ -31,31 +31,12 @@
                                     <td>{{ $rendelestetels[$i]->enev }}</td>
                                     <td>{{ $rendelestetels[$i]->darab }}</td>
                                     <td>{{ $rendelestetels[$i]->etnev }}</td>
-                                    <td>
-                                        <form action="/rendelestetellista/{{ $rendelestetels[$i]->rendelesID }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            @if ($rendelestetels[$i]->enev != '')
-                                                <input type="submit" value="Törlés">
-                                            @endif
-
-                                        </form>
-                                    </td>
                                 </tr>
                             @endfor
-                        </table>
-                        <div>
-                            <form action="/rendeleses" method="post">
-                                @csrf
-                                <label for="fizetesmodID">Fizetésmód:</label>
-                                <select name="fizetesmodID" id="fizetesmodID" style="color:black">
-                                    <option value=1>Készpénz</option>
-                                    <option value=2>Kártya</option>
+                            </table>
+                    @endif
+                    @if ($jelenjog[0]->jognev == 'admin')
 
-                                    <input type="submit" value="Rendelés leadása">
-                            </form>
-                        </div>
-                    @else
                         <table border=5 style="">
                             <tr>
                                 <th>Rendelés azonosítója</th>
@@ -70,6 +51,23 @@
                                     <td>{{ $rendelestetels[$i]->enev }}</td>
                                     <td>{{ $rendelestetels[$i]->darab }}</td>
                                     <td>{{ $rendelestetels[$i]->etnev }}</td>
+                                    <td>{{ $rendelestetels[$i]->unev }}</td>
+                                </tr>
+                            @endfor
+                        </table>
+                    @endif
+                    @if ($jelenjog[0]->jognev == 'tulaj')
+
+                        <table border=5 style="">
+                            <tr>
+                                <th>Étel neve</th>
+                                <th>Darab szám</th>
+                                <th>Rendelő</th>
+                            </tr>
+                            @for ($i = 0; $i < count($rendelestetels); $i++)
+                                <tr>
+                                    <td>{{ $rendelestetels[$i]->enev }}</td>
+                                    <td>{{ $rendelestetels[$i]->darab }}</td>
                                     <td>{{ $rendelestetels[$i]->unev }}</td>
                                 </tr>
                             @endfor

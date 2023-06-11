@@ -40,7 +40,7 @@ class KosarController extends Controller
         ->get();
         }else{
             $rendelestetels=DB::table('rendelestetels')
-        ->select('rendelesID', 'etels.nev as enev', 'darab', 'etterems.nev as etnev', 'users.name as unev')
+        ->select('rendelestetels.id as id','rendelesID', 'etels.nev as enev', 'darab', 'etterems.nev as etnev', 'users.name as unev')
         ->join('etels','rendelestetels.etelID','=','etels.id')
         ->join('rendeleses','rendelestetels.rendelesID','=','rendeleses.id')
         ->join('users','rendeleses.felhasznaloID','=','users.id')
@@ -60,4 +60,10 @@ class KosarController extends Controller
 
         return view('kosar',compact('rendelestetels','rendelestetel','jelenjog','total'));
     }
+
+    public function destroy(Rendelestetel $rendelestetel)
+        {
+            $rendelestetel->delete();
+            return redirect('/kosar');
+        }
 }

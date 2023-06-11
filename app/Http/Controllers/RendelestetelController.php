@@ -81,6 +81,6 @@ class RendelestetelController extends Controller
     public function destroy(Rendelestetel $rendelestetel)
         {
             $rendelestetel->delete();
-            return redirect('/rendelestetellista/4');
+            return redirect('/kosar');
         }
 }
